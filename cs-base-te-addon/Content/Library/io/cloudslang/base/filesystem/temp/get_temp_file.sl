@@ -1,8 +1,8 @@
 ########################################################################################################################
 #!!
-#! @description: Creates a temporal folder and generates a temporal file name inside the folder
+#! @description: Creates a temporal folder and generates the full temporal file path inside the folder. It does not create the file.
 #!
-#! @input file_name: The created file_name
+#! @input file_name: The file to be created
 #!
 #! @output folder_path: Temporally created folder
 #! @output file_path: Temporal file (not created yet); full path

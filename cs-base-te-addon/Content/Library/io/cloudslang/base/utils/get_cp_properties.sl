@@ -1,8 +1,9 @@
 ########################################################################################################################
 #!!
-#! @description: Retrives content pack properties out of the CP file
+#! @description: Retrives content pack properties out of the given CP file.
 #!
-#! @input cp_file: CP file path
+#! @input cp_file: CP file full path (the jar file)
+#! @input file_name: File inside of the jar file containing the properties
 #!
 #! @output cp_desc: CP description
 #! @output cp_name: CP name

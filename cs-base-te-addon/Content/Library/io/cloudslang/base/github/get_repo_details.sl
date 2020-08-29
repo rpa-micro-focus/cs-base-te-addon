@@ -2,6 +2,9 @@
 #!!
 #! @description: Receives public GitHub repository details.
 #!
+#! @input owner: GitHub repository owner (e.g. rpa-micro-focus)
+#! @input repo: GitHub repository name (e.g. cs-base-te-addon)
+#!
 #! @output clone_url: URL to clone the repo
 #! @output release_binary_url: URL to download the latest release binary
 #!
@@ -13,8 +16,8 @@ namespace: io.cloudslang.base.github
 flow:
   name: get_repo_details
   inputs:
-    - owner: pe-pan
-    - repo: rpa-rpa
+    - owner
+    - repo
   workflow:
     - get_repo_details:
         do:

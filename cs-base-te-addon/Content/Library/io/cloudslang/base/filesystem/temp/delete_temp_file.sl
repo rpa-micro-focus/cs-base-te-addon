@@ -1,6 +1,6 @@
 ########################################################################################################################
 #!!
-#! @description: If temp folder_path given, it removes the folder. If no folder given, it removes the file. If none given, do nothing.
+#! @description: If temp folder_path given, it removes the folder. If no folder given, it removes the file. If none is given, does nothing.
 #!
 #! @input folder_path: Temporal folder path
 #! @input file_path: File path (does not have to be temporal!)
@@ -48,13 +48,9 @@ flow:
 extensions:
   graph:
     steps:
-      is_file_path_given:
-        x: 337
-        'y': 96
-        navigate:
-          2c14317d-4a3e-92ef-4f0b-cbab5fd2e500:
-            targetId: b3291298-f4a9-062b-dc8a-b6d19693ffe0
-            port: IS_NULL
+      is_folder_path_given:
+        x: 114
+        'y': 98
       delete_temp_folder:
         x: 114
         'y': 295
@@ -75,9 +71,13 @@ extensions:
           702f6af0-84cc-89ca-3f01-e765351986eb:
             targetId: b3291298-f4a9-062b-dc8a-b6d19693ffe0
             port: FAILURE
-      is_folder_path_given:
-        x: 114
-        'y': 98
+      is_file_path_given:
+        x: 337
+        'y': 96
+        navigate:
+          2c14317d-4a3e-92ef-4f0b-cbab5fd2e500:
+            targetId: b3291298-f4a9-062b-dc8a-b6d19693ffe0
+            port: IS_NULL
     results:
       SUCCESS:
         b3291298-f4a9-062b-dc8a-b6d19693ffe0:

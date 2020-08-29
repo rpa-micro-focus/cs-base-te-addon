@@ -1,6 +1,6 @@
 ########################################################################################################################
 #!!
-#! @description: Sets top or second level properties in json document and returns the new document.
+#! @description: Sets top level or second level properties in json document and returns the new document.
 #!
 #! @input properties: List of properties to be set; if the name contains a dot '.', it will set the property on the second level
 #! @input values: List of values of the properties; must be of the same length as properties

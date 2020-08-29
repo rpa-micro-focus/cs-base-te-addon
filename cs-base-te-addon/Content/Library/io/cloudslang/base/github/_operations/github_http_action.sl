@@ -1,6 +1,5 @@
 ########################################################################################################################
 #!!
-#! @input retries: How many times to retry when API call fails
 #!!#
 ########################################################################################################################
 namespace: io.cloudslang.base.github._operations
@@ -9,9 +8,6 @@ flow:
   inputs:
     - url
     - method
-    - retries:
-        default: '10'
-        private: true
   workflow:
     - http_client_action:
         do:

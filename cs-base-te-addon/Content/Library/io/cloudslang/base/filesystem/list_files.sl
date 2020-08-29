@@ -1,7 +1,7 @@
 ########################################################################################################################
 #!!
-#! @description: Retrieves a list of files in the directory matching the pattern. 
-#!               The returned list will contain forward slashes or back slashes depending on what contained the input pattern.
+#! @description: Retrieves the list of files in the directory matching the pattern. 
+#!               The returned list will contain forward slashes or back slashes depending on what the input pattern contains.
 #!
 #! @input pattern: Full path and pattern which files to include; e.g. C:/Temp/*.txt
 #! @input full_path: If false, only base file names are returned
