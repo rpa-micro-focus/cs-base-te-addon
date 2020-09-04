@@ -5,7 +5,7 @@
 #! @input file_name: The file to be created
 #!
 #! @output folder_path: Temporally created folder
-#! @output file_path: Temporal file (not created yet); full path
+#! @output file_path: Temporal file full path. The file is to be created yet.
 #!!#
 ########################################################################################################################
 namespace: io.cloudslang.base.filesystem.temp

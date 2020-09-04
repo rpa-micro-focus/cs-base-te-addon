@@ -1,5 +1,9 @@
 ########################################################################################################################
 #!!
+#! @description: Helper method for GitHub REST API.
+#!
+#! @input url: Relative URL to be prefixed with https://api.github.com
+#! @input method: HTTP method
 #!!#
 ########################################################################################################################
 namespace: io.cloudslang.base.github._operations

@@ -6,7 +6,7 @@
 #! @input file_path: If given, the downloaded file will be placed to this file (otherwise a temporal folder will be created)
 #!
 #! @output downloaded_file_path: Full path to the downloaded file
-#! @output folder_path: Temporal folder (parent of the downloaded_file_path) or empty (if file_path input was given)
+#! @output folder_path: Temporal folder (parent of the downloaded_file_path) or empty (if the file_path input was given)
 #!!#
 ########################################################################################################################
 namespace: io.cloudslang.base.utils

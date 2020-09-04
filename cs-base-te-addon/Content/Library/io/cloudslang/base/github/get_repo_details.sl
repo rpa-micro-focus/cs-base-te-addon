@@ -5,6 +5,8 @@
 #! @input owner: GitHub repository owner (e.g. rpa-micro-focus)
 #! @input repo: GitHub repository name (e.g. cs-base-te-addon)
 #!
+#! @output repo_json: JSON document describing the repository
+#! @output latest_release_json: JSON document describing the latest release/binaries (if any)
 #! @output clone_url: URL to clone the repo
 #! @output release_binary_url: URL to download the latest release binary
 #!

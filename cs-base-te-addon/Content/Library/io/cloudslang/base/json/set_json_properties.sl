@@ -1,11 +1,12 @@
 ########################################################################################################################
 #!!
-#! @description: Sets top level or second level properties in json document and returns the new document.
+#! @description: Sets top level or second level properties in a JSON document and returns the new document.
 #!
+#! @input json_string: The original JSON document
 #! @input properties: List of properties to be set; if the name contains a dot '.', it will set the property on the second level
-#! @input values: List of values of the properties; must be of the same length as properties
-#! @input delimiter: Delimiter of properties/values in the lists
-#! @input evaluate: Evaluate the values before adding into JSON (good for complex structures). The values input is split by delimiter before evaluating each item in the values list; use an unused string if not wanting to split the evaluated value.
+#! @input values: List of values of the properties; must be of the same length as the properties list
+#! @input delimiter: Delimiter of properties/values in the lists (default is any whitespace)
+#! @input evaluate: If set to true, evaluate the values before adding into the JSON document (good for complex structures). The values input is split by delimiter before evaluating each item in the values list; use an unused string if not wanting to split the evaluated value.
 #!!#
 ########################################################################################################################
 namespace: io.cloudslang.base.json
