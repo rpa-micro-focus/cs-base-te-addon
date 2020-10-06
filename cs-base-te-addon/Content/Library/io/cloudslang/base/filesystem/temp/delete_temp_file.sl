@@ -17,11 +17,11 @@ flow:
   workflow:
     - is_folder_path_given:
         do:
-          io.cloudslang.base.utils.is_null:
-            - variable: '${folder_path}'
+          io.cloudslang.base.utils.is_true:
+            - bool_value: '${str(folder_path is not None and len(folder_path) > 0)}'
         navigate:
-          - IS_NULL: is_file_path_given
-          - IS_NOT_NULL: delete_temp_folder
+          - 'TRUE': delete_temp_folder
+          - 'FALSE': is_file_path_given
     - delete_temp_folder:
         do:
           io.cloudslang.base.filesystem.delete:
@@ -38,19 +38,19 @@ flow:
           - FAILURE: SUCCESS
     - is_file_path_given:
         do:
-          io.cloudslang.base.utils.is_null:
-            - variable: '${file_path}'
+          io.cloudslang.base.utils.is_true:
+            - bool_value: '${str(file_path is not None and len(file_path) > 0)}'
         navigate:
-          - IS_NULL: SUCCESS
-          - IS_NOT_NULL: delete_file
+          - 'TRUE': delete_file
+          - 'FALSE': SUCCESS
   results:
     - SUCCESS
 extensions:
   graph:
     steps:
       is_folder_path_given:
-        x: 114
-        'y': 98
+        x: 115
+        'y': 97
       delete_temp_folder:
         x: 114
         'y': 295
@@ -62,8 +62,8 @@ extensions:
             targetId: b3291298-f4a9-062b-dc8a-b6d19693ffe0
             port: FAILURE
       delete_file:
-        x: 552
-        'y': 93
+        x: 553
+        'y': 97
         navigate:
           f227b5ab-11c4-3070-27cf-660122bf3f4f:
             targetId: b3291298-f4a9-062b-dc8a-b6d19693ffe0
@@ -72,12 +72,12 @@ extensions:
             targetId: b3291298-f4a9-062b-dc8a-b6d19693ffe0
             port: FAILURE
       is_file_path_given:
-        x: 337
-        'y': 96
+        x: 338
+        'y': 94
         navigate:
-          2c14317d-4a3e-92ef-4f0b-cbab5fd2e500:
+          b0b1025c-f3a2-c205-f45a-4fd48fe43297:
             targetId: b3291298-f4a9-062b-dc8a-b6d19693ffe0
-            port: IS_NULL
+            port: 'FALSE'
     results:
       SUCCESS:
         b3291298-f4a9-062b-dc8a-b6d19693ffe0:
