@@ -1,6 +1,6 @@
 ########################################################################################################################
 #!!
-#! @description: Helper method for GitHub REST API.
+#! @description: Helper method for GitHub REST API. In case the call exceeds the limit in number of calls the API allows, it waits for the window to open and repeats the call.
 #!
 #! @input url: Relative URL to be prefixed with https://api.github.com
 #! @input method: HTTP method
@@ -93,15 +93,15 @@ extensions:
       limit_exceeded:
         x: 575
         'y': 399
+      get_millis:
+        x: 575
+        'y': 205
       sleep:
         x: 375
         'y': 205
       get_remaining_reset_headers:
         x: 371
         'y': 401
-      get_millis:
-        x: 575
-        'y': 205
     results:
       SUCCESS:
         66aec9a2-43df-575e-f00b-3d863c982988:
