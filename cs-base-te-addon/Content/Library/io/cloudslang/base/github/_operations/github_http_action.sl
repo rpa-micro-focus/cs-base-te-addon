@@ -27,6 +27,46 @@ flow:
           - response_headers
         navigate:
           - SUCCESS: SUCCESS
+          - FAILURE: is_403
+    - is_403:
+        do:
+          io.cloudslang.base.strings.string_equals:
+            - first_string: '${status_code}'
+            - second_string: '403'
+        navigate:
+          - SUCCESS: get_remaining_reset_headers
+          - FAILURE: on_failure
+    - limit_exceeded:
+        do:
+          io.cloudslang.base.strings.string_equals:
+            - first_string: '${ratelimit_remaining}'
+            - second_string: '0'
+        navigate:
+          - SUCCESS: get_millis
+          - FAILURE: on_failure
+    - get_millis:
+        do:
+          io.cloudslang.base.datetime.get_millis: []
+        publish:
+          - time_millis
+        navigate:
+          - SUCCESS: sleep
+    - sleep:
+        do:
+          io.cloudslang.base.utils.sleep:
+            - seconds: '${str(int(ratelimit_reset)-round(int(time_millis)/1000)+1)}'
+        navigate:
+          - SUCCESS: http_client_action
+          - FAILURE: on_failure
+    - get_remaining_reset_headers:
+        do:
+          io.cloudslang.base.utils.do_nothing:
+            - response_headers: '${response_headers}'
+        publish:
+          - ratelimit_remaining: "${response_headers.split('X-Ratelimit-Remaining:')[1].split('\\n')[0].strip()}"
+          - ratelimit_reset: "${response_headers.split('X-Ratelimit-Reset:')[1].split('\\n')[0].strip()}"
+        navigate:
+          - SUCCESS: limit_exceeded
           - FAILURE: on_failure
   outputs:
     - return_result: '${return_result}'
@@ -41,14 +81,29 @@ extensions:
   graph:
     steps:
       http_client_action:
-        x: 77
-        'y': 110
+        x: 145
+        'y': 204
         navigate:
           eea58ce5-75de-985e-514d-0311e373704f:
             targetId: 66aec9a2-43df-575e-f00b-3d863c982988
             port: SUCCESS
+      is_403:
+        x: 143
+        'y': 400
+      limit_exceeded:
+        x: 575
+        'y': 399
+      sleep:
+        x: 375
+        'y': 205
+      get_remaining_reset_headers:
+        x: 371
+        'y': 401
+      get_millis:
+        x: 575
+        'y': 205
     results:
       SUCCESS:
         66aec9a2-43df-575e-f00b-3d863c982988:
-          x: 288
-          'y': 112
+          x: 141
+          'y': 27
