@@ -15,8 +15,10 @@ operation:
     - file_name:
         required: true
   python_action:
-    use_jython: false
-    script: "import os, tempfile\ndef execute(file_name): \n    folder_path = tempfile.mkdtemp()\n    file_path = os.path.join(folder_path, file_name)\n    return { 'folder_path' : folder_path, 'file_path' : file_path }"
+    script: |-
+      import os, tempfile
+      folder_path = tempfile.mkdtemp()
+      file_path = os.path.join(folder_path, file_name)
   outputs:
     - folder_path
     - file_path

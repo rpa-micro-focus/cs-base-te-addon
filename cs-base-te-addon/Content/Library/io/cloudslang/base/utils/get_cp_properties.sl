@@ -20,8 +20,7 @@ operation:
         private: true
         default: contentpack.properties
   python_action:
-    use_jython: false
-    script: "import zipfile, configparser\ndef execute(cp_file, file_name):\n    archive = zipfile.ZipFile(cp_file, 'r')\n\n    file_content = archive.read(file_name).decode('UTF-8')  # decode otherwise it's a byte stream\n\n    config = configparser.ConfigParser()\n    config.read_string(\"[top]\\n\" + file_content)            # add [top] section (configparser needs sections)\n    return { 'cp_desc' : config['top']['content.pack.description'],\n             'cp_name' : config['top']['content.pack.name'],                         \n             'cp_pub' : config['top']['content.pack.publisher'],                         \n             'cp_version' : config['top']['content.pack.version'] }"
+    script: "import zipfile, ConfigParser, StringIO\narchive = zipfile.ZipFile(cp_file, 'r')\n\nfile_content = archive.read(file_name).decode('UTF-8')  # decode otherwise it's a byte stream\n\nconfig = ConfigParser.ConfigParser()\nbuf = StringIO.StringIO(\"[top]\\n\" + file_content)             # add [top] section (configparser needs sections)\nconfig.readfp(buf)\n\ncp_desc = config.get('top', 'content.pack.description')\ncp_name = config.get('top', 'content.pack.name')\ncp_pub = config.get('top', 'content.pack.publisher')                     \ncp_version = config.get('top', 'content.pack.version')"
   outputs:
     - cp_desc: '${cp_desc}'
     - cp_name: '${cp_name}'
@@ -29,3 +28,4 @@ operation:
     - cp_version: '${cp_version}'
   results:
     - SUCCESS
+

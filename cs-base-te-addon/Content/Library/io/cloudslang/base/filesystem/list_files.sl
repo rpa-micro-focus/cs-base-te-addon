@@ -16,9 +16,16 @@ operation:
     - pattern
     - full_path: 'true'
   python_action:
-    use_jython: false
-    script: "import glob, os\ndef execute(pattern, full_path): \n    files_list = glob.glob(pattern)\n    if full_path == 'true':\n        files = files_list\n    else:\n        files = [os.path.basename(x) for x in files_list]\n    return {\"files\" : str(files) }"
+    script: |-
+      import glob, os
+      files_list = glob.glob(pattern)
+      if full_path == 'true':
+          files = [str(x) for x in files_list]
+      else:
+          files = [str(os.path.basename(x)) for x in files_list]
+      files = str(files)
   outputs:
     - files: '${files}'
   results:
     - SUCCESS
+
