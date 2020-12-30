@@ -21,7 +21,6 @@ operation:
           shutil.copytree(existing_folder, cloned_folder)
           failure = ''
       except Exception as e:
-      #    failure = 'Exception: '+str(e)
           failure = "%s: %s" % (type(e).__name__, str(e))
   outputs:
     - failure
