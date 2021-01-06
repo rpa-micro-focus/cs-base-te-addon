@@ -22,7 +22,7 @@ operation:
       import json, sys
       try:
           if escape == 'false':   #unescape
-              output_string = str(json.loads(input_string))
+              output_string = json.loads(input_string).encode('utf-8')
           else:                   #escape
               output_string = json.dumps(input_string)
           failure = ''
